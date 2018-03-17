@@ -10,12 +10,12 @@ catalog:      false
 multilingual: false
 comments:     true
 tags:
-    - General
+    - VSCode
     - PlantUML
 ---
 
 ### PlantUML with VSCode
-PlantUML is a component that allows to quickly write:
+[PlantUML](http://plantuml.com/) is a component that allows to quickly write:
 - Sequence diagram
 - Usecase diagram
 - Class diagram
@@ -26,13 +26,13 @@ PlantUML is a component that allows to quickly write:
 - Deployment diagram 
 - Timing diagram 
 
-With VSCode, it can be even more powerful. VSCode has a PlantUML extension supporting review, export for multiple file-formats(png, svg etc.) 
+For PlantUML itself, it is a Jar package, but with VSCode, it can be even more powerful. VSCode has a PlantUML extension supporting review, export for multiple file-formats(png, svg etc.) 
 ### Get Started
 ##### Prerequisite
 - Java
 - [Graphviz](http://www.graphviz.org/download/)
 
-for Graphviz, you need to add its dot.exe into environment variables
+I think everyone know how to download, install and setup Java, and  Graphviz, you need to add its dot.exe into environment variables
 
 | Environment Variable Name        | Value                            |  
 | ----------------------------     |:--------------------:            |  
@@ -45,9 +45,9 @@ launch VSCode Quick Open(Ctrl + P), paste the following command, and press enter
 ext install plantuml
 ```
 
-##### Basic Shourtcut
+##### Basic Shortcut
 
-| Short Cut        | Opeartion   |  
+| Short Cut        | Operation   |  
 | -------------    |:-----------:|  
 | Alt + D          | Preview     |  
 | Ctrl + Shift + P | Export      |
