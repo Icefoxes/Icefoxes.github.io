@@ -1,6 +1,6 @@
 ---
 layout:       post
-title:        "Nlog"
+title:        "How to Encrypt NLog"
 subtitle:     "How to Encrypt NLog"
 date:         2018-01-05 12:00:00
 author:       "Gary"
