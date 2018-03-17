@@ -10,7 +10,7 @@ catalog:      false
 multilingual: false
 comments:     true
 tags:
-    - WPF
+    - .NET
 ---
 
 ### Convert a CLR string to char*

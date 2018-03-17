@@ -10,7 +10,6 @@ catalog:      false
 multilingual: false
 comments:     true
 tags:
-    - General
     - Git
 ---
 

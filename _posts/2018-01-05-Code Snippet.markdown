@@ -11,6 +11,7 @@ multilingual: false
 comments:     true
 tags:
     - WPF
+    - .NET
 ---
 
 ### VS Snippet
