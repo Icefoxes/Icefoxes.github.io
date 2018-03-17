@@ -1,0 +1,10 @@
+@startuml dicom
+
+(*) --> "Patient"
+"Patient" --> "Study 0"
+"Patient" --> "Study 1"
+"Study 0" --> "Series 0"
+"Study 0" --> "Series 1"
+"Series 0" --> "Image 0"
+"Series 0" --> "Image 1"
+@enduml

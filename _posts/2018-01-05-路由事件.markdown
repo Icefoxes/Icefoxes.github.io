@@ -1,0 +1,68 @@
+---
+layout:       post
+title:        "WPF 路由事件"
+subtitle:     "WPF 路由事件详解"
+date:         2018-01-05 12:00:00
+author:       "Gary"
+header-img:   "img/post-bg-miui6.jpg"
+header-mask:  0.3
+catalog:      false
+multilingual: false
+comments:     true
+tags:
+    - WPF
+---
+
+####  路由事件
+
+####  注册路由事件
+事件路由允许源自某个元素的事件由另外一个元素引发
+```C#
+public static readonly RoutedEvent SomewhatEvent =
+    EventManager.RegisterRoutedEvent(nameof(Somewhat), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MainWindow));
+
+public event RoutedEventHandler Somewhat
+{
+    add { AddHandler(SomewhatEvent, value); }
+    remove { RemoveHandler(SomewhatEvent, value); }
+}
+```    
+####  共享路由事件
+
+使用`AddOwner`来实现
+
+####  引发路由事件
+
+```C#
+RoutedEventArgs e = new RoutedEventArgs(SomewhatEvent, this);
+base.RaiseEvent(e);
+```
+
+####  处理路由事件
+
+这些方法都会自动调用AddHandler和RemoveHandler来实现
+
+```C#
+instance.SomewhatEvent += method
+```
+
+####  事件路由
+
+####  分类
+- Direct      与DotNet现有事件相似
+- Bubbling    从当前元素出发，一直通过元素树向上传递
+- Tunneling   从当前元素触发，一直通过元素树向下传递
+
+####  RoutedEventArgs 类
+
+- Source   引发事件的对象
+- Original 最开始是谁引发了事件
+- RoutedEvent 
+- Handled  可以终止冒泡和隧道事件
+
+
+####  WPF事件
+
+1. 生命周期事件
+2. 输入事件
+3. 键盘事件

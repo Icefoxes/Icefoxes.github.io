@@ -1,0 +1,205 @@
+---
+layout:       post
+title:        "TSQL"
+subtitle:     "TSQL"
+date:         2016-06-21 12:00:00
+author:       "Gary"
+header-img:   "img/post-bg-android.jpg"
+header-mask:  0.3
+catalog:      false
+multilingual: false
+comments:     true
+tags:
+    - SQL Server
+---
+
+
+### TSQL Reference
+
+[TSQL](https://docs.microsoft.com/en-us/sql/t-sql/language-elements) This is Microsoft Doc Link
+
+#### Variable Define
+----------------------------------------------------
+local variable use @, global variable use @@
+```SQL
+-- Declare a variable
+-- Sytanx: DECLARE [variable] [date type]
+DECLARE @myvar char(20);  
+
+-- Set variable value
+-- Sytanx: SET [variable] = [value]
+SET @myvar = 'This is a test';  
+```
+
+#### Variable type
+----------------------------------------------------
+##### Difference between *char & *text
+`n` means **national**, so string type starts with `n` supports unicode.
+text can store larger size of content, it can holds (2 ** 31 - 1)KB(about 2GB)content
+
+| Type       | Unicode   |  Fixed |
+| -----------|:-------:  |:------:|  
+| nchar      | Y         | Y      |
+| nvarchar   | Y         | N      |
+| char       | N         | Y      |
+| varchar    | N         | N      |
+| text       | N         | N      | 
+| ntext      | Y         | N      | 
+
+##### Difference between integers
+
+| Type       | Range            | Storage |
+| -----------|:-------:         |:------: |  
+| bigint     | -2^63 to 2^63-1  | 8 bytes |
+| int        | -2^31 to 2^31-1  | 4 bytes |
+| smallint   | -2^15 to 2^15-1  | 2 bytes |
+| tinyint    | 0 to 255         | 1 byte  |
+
+
+#### Comment
+----------------------------------------------------
+###### 1. single line comment
+```SQL
+-- text_of_comment  
+```
+###### 2. block comment
+```SQL
+/*  
+text_of_comment  
+*/  
+```
+
+#### Flow Control
+----------------------------------------------------
+
+###### 1. BEGIN...END
+Encloses a series of Transact-SQL statements so that a group of Transact-SQL statements can be executed. BEGIN and END are control-of-flow language keywords.
+```SQL
+BEGIN  
+    { sql_statement | statement_block }   
+END  
+```
+Example:
+```SQL
+-- Uses AdventureWorks  
+WHILE ((SELECT AVG(ListPrice) FROM dbo.DimProduct) < $300)  
+BEGIN  
+    UPDATE DimProduct  
+        SET ListPrice = ListPrice * 2;  
+     IF ((SELECT MAX(ListPrice) FROM dbo.DimProduct) > $500)  
+         BREAK;  
+END  
+```
+###### 2. While Break Continue
+Unlike other programming language, TSQL has only one loop
+
+
+###### 3. If-Else
+```SQL
+IF Boolean_expression   
+     { sql_statement | statement_block }   
+[ ELSE   
+     { sql_statement | statement_block } ]   
+```
+
+###### 4. Throw & Try-Catch
+Sytanx:
+```SQL
+BEGIN TRY  
+     { sql_statement | statement_block }  
+END TRY  
+BEGIN CATCH  
+     [ { sql_statement | statement_block } ]  
+END CATCH  
+[ ; ]  
+```
+Example:
+```SQL
+BEGIN TRY  
+    -- Table does not exist; object name resolution  
+    -- error not caught.  
+    SELECT * FROM NonexistentTable;  
+END TRY  
+BEGIN CATCH  
+    SELECT   
+        ERROR_NUMBER() AS ErrorNumber  
+       ,ERROR_MESSAGE() AS ErrorMessage;  
+END CATCH  
+```
+
+###### 5. Case When
+Sytanx:
+```SQL
+CASE expression   
+     WHEN when_expression THEN result_expression [ ...n ]   
+     [ ELSE else_result_expression ]   
+END
+```
+Example:
+```SQL
+
+SELECT ProductNumber, Category =  
+      CASE ProductLine  
+         WHEN 'R' THEN 'Road'  
+         WHEN 'M' THEN 'Mountain'  
+         WHEN 'T' THEN 'Touring'  
+         WHEN 'S' THEN 'Other sale items'  
+         ELSE 'Not for sale'  
+      END,  
+   Name  
+FROM Production.Product  
+ORDER BY ProductNumber;  
+GO  
+```
+
+#### Cursor 
+----------------------------------------------------
+```SQL
+-- Step1. Declare Cursor
+-- Sytanx: DECLARE [cursor_name] CURSOR FOR [select_statement]
+DECLARE Employee_Cursor CURSOR FOR  
+SELECT EmployeeID FROM AdventureWorks2012.HumanResources.Employee;  
+
+-- Step2. Open Cursor
+-- Sytanx: Open [CURSOR]
+OPEN Employee_Cursor;  
+
+DECLARE @id INT
+
+-- Step3. Fetch Cursor
+-- Sytanx: FETCH NEXT|PRIOR|FIRST|LAST FROM [Cursor] Into [Variable]
+FETCH NEXT FROM Employee_Cursor Into @id;  
+
+-- if there's no value left, @@FETCH_STATUS = -1, otherwise it equals to 0
+WHILE @@FETCH_STATUS = 0  
+   BEGIN  
+      FETCH NEXT FROM Employee_Cursor INTO @id;
+      print @ID  
+   END;  
+
+-- Step4. Close & Deallocate Cursor
+-- Sytax: CLOSE [Cursor]
+--        DEALLOCATE [Cursor]
+CLOSE Employee_Cursor;  
+DEALLOCATE Employee_Cursor;  
+GO  
+```
+
+
+#### Options
+##### `SET ANSI_NULLS { ON | OFF }`
+When `SET ANSI_NULLS is ON`, a `SELECT` statement that uses `WHERE column_name = NULL` returns zero rows even if there are null values `incolumn_name`. A `SELECT` statement that uses `WHERE column_name <> NULL` returns zero rows even if there are nonnull values in column_name.
+
+
+#### Global Viariable
+`@@IDENTITY`
+After an INSERT, SELECT INTO, or bulk copy statement is completed, `@@IDENTITY` contains the last identity value that is generated by the statement. 
+
+`@@Error`
+Returns 0 if the previous TSQL statement encountered no errors.
+
+`@@ROWCOUNT` 
+TSQL statements can set the value in `@@ROWCOUNT` in the following ways:
+- Set `@@ROWCOUNT` to the number of rows affected or read. Rows may or may not be sent to the client.
+- Preserve `@@ROWCOUNT` from the previous statement execution.
+- Reset `@@ROWCOUNT` to 0 but do not return the value to the client.

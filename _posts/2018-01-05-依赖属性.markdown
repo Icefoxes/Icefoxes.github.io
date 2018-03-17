@@ -1,0 +1,91 @@
+---
+layout:       post
+title:        "WPF 依赖属性"
+subtitle:     "WPF 依赖属性详解"
+date:         2018-01-05 12:00:00
+author:       "Gary"
+header-img:   "img/post-bg-miui6.jpg"
+header-mask:  0.3
+catalog:      false
+multilingual: false
+comments:     true
+tags:
+    - WPF
+---
+
+依赖属性有更高的保存机制，以及附加功能
+
+一直以来对于依赖属性我都有点懵B，其实最主要的原因是我总是不能理解为什么要强调它有Change Notification的功能，我一直将其带入了MVVM来看，认为ViewModel已经继承了INotifyPropertyChanged的属性，在我看来，比如在View上定义了一个TextBox，将其内容Binding在ViewModel的Text上的，这个时候在ViewModel里某个方法修改了这个值，会想View发出通知。但是如果在View里发生了改变呢？如果View里存的是一个普通的DotNET Property，那么它的改变不会出发修改ViewModel的通知，原因就是View里的那些属性也是定义为的DP，现在看来，我只是对于View向ViewModel传递的原理还不懂，终于明白了为什么要定义DP，汗颜啊
+
+1. 更改通知(Change Notification)
+2. 属性值继承（可以向下传播默认属性值）
+3. 动画，绑定，样式依赖于它
+
+
+#### 定义和注册依赖属性
+```C#
+Register(string name, Type propertyType, Type ownerType, PropertyMetadata typeMetadata, ValidateValueCallback validateValueCallback)
+```
+
+FrameworkPropertyMetaData <-- UIPropertyMeataData <-- 
+PropertyMetaData
+
+```C#
+FrameworkPropertyMetadata meta = new FrameworkPropertyMetadata()
+{
+        AffectsRender = true,
+        AffectsArrange = true,
+        AffectsMeasure = true,
+        AffectsParentArrange = true,
+        AffectsParentMeasure = true,
+        // default is false
+        BindsTwoWayByDefault = true,
+        // True 会通过元素树传播该依赖属性，可以被嵌套的元素集成
+        Inherits = true,
+        // 是否能用于动画
+        IsAnimationProhibited = true,
+        // 是否能用于Binding表达式
+        IsNotDataBindable = true,
+        // 如果为True，在基于Page的应用程序中，依赖属性将会被保存到日志中
+        Journal = true,
+        // 如果为True，并且对象的某个子属性将不会
+        SubPropertiesDoNotAffectRender = true,
+        // 当该属性用于不 
+        DefaultUpdateSourceTrigger = UpdateSourceTrigger.Default,
+        // Default Value
+        DefaultValue = false,
+
+        // 依赖属性发生变化时调用函数
+        PropertyChangedCallback = OnSomePropertyChanged,
+
+        // 验证依赖属性之前进行修正
+        CoerceValueCallback = OnSomeProprotyChangedCoerce
+};
+```
+
+
+#### 设计依赖属性
+1. 定义和注册属性
+2. 添加属性包装器
+
+#### 使用依赖属性的方式
+1. 依赖属性的值发生变化的时候，不会自动触发通知，而是触发OnPropertyChangedCallback方法，而是通过WPF的Binding和Trigger来传递消息，并调用PropertyChangedCallback的回调函数
+
+2. 动态值识别
+依赖属性的值依赖于多个属性值的提供者，取值顺序的优先级（从低到高）
+- 默认值
+- 继承得来的值
+- 主题样式的值
+- 项目样式的值
+- 本地设置的值
+
+#### 依赖属性决定值的步骤
+ 1. 确定基本值，通过上面的取值顺序获得
+ 2. 有表达式的就进行表达式求值
+  - data bingding
+  - Resouce
+ 3. 如果属性是动画的目标，就应用动画
+ 4. 如果CoerceValueCallback回调函数来修正属性值
+ 
+#### 共享的依赖属性
+尽管类有不一样的集成结构，有可以共享，通过AddOwner来实现

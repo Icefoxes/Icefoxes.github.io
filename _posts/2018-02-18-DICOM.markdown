@@ -1,0 +1,17 @@
+---
+layout:       post
+title:        "DICOM"
+subtitle:     "DICOM Structure"
+date:         2018-02-18 12:00:00
+author:       "Gary"
+header-img:   "img/post-bg-miui6.jpg"
+header-mask:  0.3
+catalog:      false
+multilingual: false
+comments:     true
+tags:
+    - DICOM
+---
+
+#### Basic DICOM Structure
+![dicom](http://www.plantuml.com/plantuml/png/SoWkIImgAStDKKZ9JCxFvUNYvTBGqbJGrRLJK0f8BCbCpIjHukM2Co4ImIMbAPKA1hWa344IC3LGYTIYpDHYY1QiCX0zC5KGAS_SnFHKg1viCY0z3gbvAK3N0m00 "dicom")
