@@ -15,9 +15,9 @@ tags:
 
 ### VS Snippet
 
-使用 *propdp* 快捷添加依赖属性
+Use *propdp* create dependency property
 
-### 使DataGrid的内容和Header对齐
+### create style for datagrid header
 
 ```XML
 <DataGrid.CellStyle>
@@ -33,7 +33,7 @@ tags:
     </Style>
 </DataGrid.ColumnHeaderStyle>
 ```
-### 在DataGrid里加入菜单
+### Add Menu Into DataGrid
 
 ```XML
 <DataGrid.ContextMenu>
@@ -44,7 +44,7 @@ tags:
 </DataGrid.ContextMenu>
 ```
 
-### 事件转化为命令
+### Convert Event To Command
 
 ```XML
 <TabControl>
@@ -56,20 +56,20 @@ tags:
 </TabControl>
 ```
 
-### DataGrid EditingElementStyle和ElementStyle
+### DataGrid EditingElementStyle And ElementStyle
 
 ```XML
 <DataGridComboBoxColumn.EditingElementStyle>
 <Style TargetType="ComboBox">
     <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type metro:MetroWindow}}, Path=DataContext.PropetyTypes}"></Setter>
     <Setter Property="IsEditable" Value="True"></Setter>
-    <Setter Property="Text" Value="{Binding Path=名称, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Setter>
+    <Setter Property="Text" Value="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></Setter>
 </Style>
 </DataGridComboBoxColumn.EditingElementStyle>
 <DataGridComboBoxColumn.ElementStyle>
 <Style TargetType="ComboBox">
     <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type metro:MetroWindow}}, Path=DataContext.PropetyTypes}"></Setter>
-    <Setter Property="Text" Value="{Binding Path=名称, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Setter>
+    <Setter Property="Text" Value="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Setter>
 </Style>
 </DataGridComboBoxColumn.ElementStyle>
 ```
@@ -92,10 +92,9 @@ tags:
 </Button>
 ```
 
-### 为DataColumn定义Visibility
-
-难点：因为DataColumn不存在于Visual Tree里，所以不能使用一般的Binding方法（比如使用FindAncestor)。需要定义一个Freezable的类
-```C#
+### Binding Visibility to DataColumn
+DataColumn doesnot exsit in Visual Tree, so it requires a proxy class to implement the binding
+```CSharp
 public class BindingProxy : Freezable
 {
     protected override Freezable CreateInstanceCore()
@@ -109,15 +108,11 @@ public class BindingProxy : Freezable
         set { SetValue(DataProperty, value); }
     }
 
-    // Using a DependencyProperty as the backing store for Data.
-    // This enables animation, styling, binding, etc...
-    public static readonly DependencyProperty DataProperty =
-        DependencyProperty.Register("Data", typeof(object), 
-        typeof(BindingProxy), new UIPropertyMetadata(null));
+    public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(object),  typeof(BindingProxy), new UIPropertyMetadata(null));
 }
 
 ```
-然后将其放入UserControl的顶层资源中，并且Binding住DataContext
+
 ```XML
 <UserControl.Resources>
     <local:BindingProxy x:Key="proxy" Data="{Binding}" />
