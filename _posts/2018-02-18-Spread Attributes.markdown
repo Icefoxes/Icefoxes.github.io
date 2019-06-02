@@ -3,7 +3,7 @@ layout:       post
 title:        "Spread Attributes"
 subtitle:     "ECMAScript 2015 - Spread Attributes"
 date:         2018-02-18 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-js-version.jpg"
 header-mask:  0.3
 catalog:      false

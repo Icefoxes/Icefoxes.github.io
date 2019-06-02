@@ -3,7 +3,7 @@ layout:       post
 title:        "Set Global Proxy in Ubuntu"
 subtitle:     "Set Global Proxy in Ubuntu (Command Line)"
 date:         2015-03-14 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-ubuntu.jpg"
 header-mask:  0.3
 catalog:      false

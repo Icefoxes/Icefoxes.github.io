@@ -3,7 +3,7 @@ layout:       post
 title:        "CSS Vertical Align"
 subtitle:     "CSS Vertical Align"
 date:         2015-02-22 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-android.jpg"
 header-mask:  0.3
 catalog:      false

@@ -3,7 +3,7 @@ layout:       post
 title:        "Abstract Class In C#"
 subtitle:     "Abstract Class In C#"
 date:         2016-04-25 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-android.jpg"
 header-mask:  0.3
 catalog:      false

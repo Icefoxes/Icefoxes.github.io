@@ -3,7 +3,7 @@ layout:       post
 title:        "SQL Server Remote Connection"
 subtitle:     "SQL Server Remote Connection Configuration"
 date:         2016-05-20 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-android.jpg"
 header-mask:  0.3
 catalog:      false

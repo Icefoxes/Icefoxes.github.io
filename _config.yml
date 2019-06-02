@@ -1,19 +1,19 @@
 # Site settings
-title: GSock
-SEOTitle: GSock | Gary Blog
+title: Gnomon
+SEOTitle: Gnomon | Kuo Blog
 header-img: img/home-bg-o.jpg
 email: gary.guo.china@gmail.com
-description: "Personal Blog for .NET Web"
-keyword: "Front End, Web, .NET, .NET Core"
-url: "https://Icefoxes.github.io"                      # your host, for absolute URL
+description: "Personal Blog for Kuo"
+keyword: "Angular, Java, .NET"
+url: "https://Icefoxes.github.io"              # your host, for absolute URL
 baseurl: ""                                    # for example, '/blog' if your blog hosted on 'host/blog'
 
 # SNS settings
 RSS: false
-weibo_username:     
-zhihu_username:     
+weibo_username:
+zhihu_username:
 github_username:    Icefoxes
-twitter_username:   
+twitter_username:
 #facebook_username:  
 #linkedin_username:  
 
@@ -24,7 +24,7 @@ permalink: pretty
 paginate: 15
 exclude: ["less", "node_modules", "Gruntfile.js", "package.json"]
 # if you want to customize anchor. check out line:181 of `post.html`
-anchorjs: true                         
+anchorjs: true
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0

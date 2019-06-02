@@ -3,7 +3,7 @@ layout:       post
 title:        "Opening Ports on the Windows Firewall"
 subtitle:     "Opening Ports on the Windows Firewall With GUI/CMD/PowerShell"
 date:         2018-02-22 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-ubuntu.jpg"
 header-mask:  0.3
 catalog:      false

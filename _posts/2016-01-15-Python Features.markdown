@@ -3,7 +3,7 @@ layout:       post
 title:        "Python Features"
 subtitle:     "Python Features"
 date:         2016-01-15 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-miui6.jpg"
 header-mask:  0.3
 catalog:      false

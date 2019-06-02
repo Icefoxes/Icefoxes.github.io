@@ -3,7 +3,7 @@ layout:       post
 title:        "Git"
 subtitle:     "Git"
 date:         2016-02-07 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-miui6.jpg"
 header-mask:  0.3
 catalog:      false

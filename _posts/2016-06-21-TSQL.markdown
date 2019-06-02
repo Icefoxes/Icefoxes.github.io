@@ -3,7 +3,7 @@ layout:       post
 title:        "TSQL"
 subtitle:     "TSQL"
 date:         2016-06-21 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-android.jpg"
 header-mask:  0.3
 catalog:      false

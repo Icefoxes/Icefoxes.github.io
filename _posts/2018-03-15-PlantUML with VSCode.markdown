@@ -3,7 +3,7 @@ layout:       post
 title:        "PlantUML with VSCode"
 subtitle:     "PlantUML with VSCode"
 date:         2018-03-15 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-ubuntu.jpg"
 header-mask:  0.3
 catalog:      false

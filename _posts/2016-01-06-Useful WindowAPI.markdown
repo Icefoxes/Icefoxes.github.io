@@ -3,7 +3,7 @@ layout:       post
 title:        "Useful WindowAPI"
 subtitle:     "Useful WindowAPI"
 date:         2016-01-06 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-android.jpg"
 header-mask:  0.3
 catalog:      false

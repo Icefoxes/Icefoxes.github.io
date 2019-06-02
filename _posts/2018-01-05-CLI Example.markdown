@@ -3,7 +3,7 @@ layout:       post
 title:        "CLI/C++"
 subtitle:     "CLI/C++ Example"
 date:         2018-01-05 12:00:00
-author:       "Gary"
+author:       "Kuo"
 header-img:   "img/post-bg-miui6.jpg"
 header-mask:  0.3
 catalog:      false
