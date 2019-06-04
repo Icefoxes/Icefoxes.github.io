@@ -2,7 +2,7 @@
 layout:       post
 title:        "AOP Implement in .NET"
 subtitle:     "AOP Implement in .NET"
-date:         2015-06-04 19:45:00
+date:         2019-06-04 19:45:00
 author:       "Kuo"
 header-img:   "img/post-bg-miui6.jpg"
 header-mask:  0.3
