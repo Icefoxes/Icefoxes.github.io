@@ -1,0 +1,46 @@
+---
+layout:       post
+title:        "AOP Implement in .NET"
+subtitle:     "AOP Implement in .NET"
+date:         2019-06-04 19:45:00
+author:       "Kuo"
+header-img:   "img/post-bg-miui6.jpg"
+header-mask:  0.3
+catalog:      false
+multilingual: false
+comments:     true
+tags:
+    - AOP
+---
+#### how is a javascript been loaded
+
+#### this
+`this` is readonly.
+
+`this` is kind of like `context` in javascript.
+In chrome console, if you type `this`, this means the root object, i.e. `window`
+```javascript
+> this
+
+ouput: Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+
+let obj = {}
+obj.speak = new function() {
+    console.log(this)
+}
+```
+
+#### closure
+
+
+#### variadic funcion
+
+```javascript
+function max(/* ... */) {
+    let max = Number.NEGATIVE_INFINITY;
+    for(let idx = 0; idx < arguments.length; idx++ ) {
+        if(arguments[idx]> max) max = arguments[idx];
+    }
+    return max
+}
+```

@@ -1,0 +1,21 @@
+---
+layout:       post
+title:        "How-To Resolve High CPU"
+subtitle:     "PlantUML with VSCode"
+date:         2018-03-15 12:00:00
+author:       "Kuo"
+header-img:   "img/post-bg-universe.jpg"
+header-mask:  0.3
+catalog:      false
+multilingual: false
+comments:     true
+tags:
+    - WinDBG
+    - C#
+---
+### How-To Resolve High CPU
+Support team reported an issue regrading high CPU usage of our latest deployed service application. They helped me to check corresponding process and found the count of threads is more than 2,000 and the CPU usage raised to 40%, and normally the CPU usage should be less than 10%.
+
+Since in most cases developers cannot debug application directly in production server, support team helped me to create a dump file
+
+### What is Dump file and what is used for
